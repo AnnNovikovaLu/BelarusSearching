@@ -2,6 +2,7 @@ import {
   BelongsTo,
   Column,
   DataType,
+  ForeignKey,
   Model,
   Table,
 } from 'sequelize-typescript';
@@ -27,6 +28,10 @@ export class Review extends Model<Review, ReviewCreationAttrs> {
 
   @Column({ type: DataType.FLOAT, allowNull: false })
   rating: number;
+
+  @ForeignKey(() => User)
+  @Column({ type: DataType.INTEGER, allowNull: false })
+  userId: number;
 
   @BelongsTo(() => User)
   user: User;
