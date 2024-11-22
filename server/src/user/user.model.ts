@@ -7,6 +7,7 @@ import {
   Model,
   Table,
 } from 'sequelize-typescript';
+import { Booking } from 'src/booking/booking.model';
 import { Group } from 'src/group/group.model';
 import { GroupUser } from 'src/group_user/group_user.model';
 import { Host } from 'src/host/host.model';
@@ -51,6 +52,9 @@ export class User extends Model<User, UserCreationAttrs> {
 
   @HasMany(() => Host)
   hosts: Host[];
+
+  @HasMany(() => Booking)
+  bookings: Booking[];
 
   @HasMany(() => Review)
   reviews: Review[];

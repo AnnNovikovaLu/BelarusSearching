@@ -1,5 +1,4 @@
 import {
-  BadRequestException,
   ConflictException,
   Injectable,
   NotFoundException,
@@ -11,6 +10,8 @@ import { CreateUserDto } from './dto/create-user.dto';
 import * as bcrypt from 'bcryptjs';
 import { JwtService } from '@nestjs/jwt';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { Group } from 'src/group/group.model';
+import { Booking } from 'src/booking/booking.model';
 
 @Injectable()
 export class UserService {
@@ -100,5 +101,29 @@ export class UserService {
     const newToken = this.jwtService.sign(payload);
 
     return { user: user, token: newToken };
+  }
+
+  async getUserGroups(userId: number) {
+    const user = await this.userRepository.findByPk(userId, {
+      include: { model: Group },
+    });
+
+    if (!user) {
+      throw new NotFoundException('User not found');
+    }
+
+    return user.groups;
+  }
+
+  async getUserBookings(userId: number) {
+    const user = await this.userRepository.findByPk(userId, {
+      include: { model: Booking },
+    });
+
+    if (!user) {
+      throw new NotFoundException('User not found');
+    }
+
+    return user.bookings;
   }
 }

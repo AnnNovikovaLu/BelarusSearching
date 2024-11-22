@@ -2,6 +2,7 @@ import {
   BelongsTo,
   Column,
   DataType,
+  ForeignKey,
   Model,
   Table,
 } from 'sequelize-typescript';
@@ -11,7 +12,8 @@ interface VerificationCreationAttrs {
   phoneNumber: string;
   description: string;
   interests: string;
-  photo: string;
+  image: string;
+  userId: number;
 }
 
 @Table({ tableName: 'verifications' })
@@ -38,6 +40,10 @@ export class Verification extends Model<
 
   @Column({ type: DataType.STRING, allowNull: false })
   image: string;
+
+  @ForeignKey(() => User)
+  @Column({ type: DataType.INTEGER, allowNull: false })
+  userId: number;
 
   @BelongsTo(() => User)
   user: User;

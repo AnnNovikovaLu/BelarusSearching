@@ -1,4 +1,4 @@
-export class UpdateUserDto {
+export interface UpdateUserDto {
   readonly name?: string;
   readonly surname?: string;
   readonly email?: string;

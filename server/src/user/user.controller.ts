@@ -2,7 +2,6 @@ import {
   BadRequestException,
   Body,
   Controller,
-  Delete,
   ForbiddenException,
   Get,
   Param,
@@ -13,7 +12,6 @@ import {
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
-import { User } from './user.model';
 import { JwtAuthGuard } from 'src/Guards/jwt-auth.guard';
 import { UpdateUserDto } from './dto/update-user.dto';
 
@@ -55,5 +53,27 @@ export class UserController {
     }
 
     return this.userService.updateUser(userId, updateUserDto);
+  }
+
+  @Get(':id/groups')
+  async getUserGroups(@Param('id') id: number) {
+    return this.userService.getUserGroups(id);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Get(':id/bookings')
+  getUserBookings(@Param('id') id: string, @Req() req) {
+    const userId = req.user.id;
+    const parsedId = parseInt(id, 10);
+
+    if (isNaN(parsedId)) {
+      throw new BadRequestException('Invalid user ID');
+    }
+
+    if (userId !== parsedId) {
+      throw new ForbiddenException('You can obtain only your own bookings');
+    }
+    
+    return this.userService.getUserBookings(userId);
   }
 }
