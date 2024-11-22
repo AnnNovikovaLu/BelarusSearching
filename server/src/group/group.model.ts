@@ -1,5 +1,4 @@
 import {
-  BelongsTo,
   BelongsToMany,
   Column,
   DataType,
@@ -10,9 +9,9 @@ import { GroupUser } from 'src/group_user/group_user.model';
 import { User } from 'src/user/user.model';
 
 interface GroupCreationAttrs {
-  city: string;
-  address: string;
-  guestCount: number;
+  title: string;
+  description: string;
+  image: string;
 }
 
 @Table({ tableName: 'groups' })
@@ -26,7 +25,7 @@ export class Group extends Model<Group, GroupCreationAttrs> {
   id: number;
 
   @Column({ type: DataType.STRING, allowNull: false })
-  tittle: number;
+  title: string;
 
   @Column({ type: DataType.STRING, allowNull: false })
   image: string;
