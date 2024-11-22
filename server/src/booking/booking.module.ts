@@ -5,10 +5,12 @@ import { SequelizeModule } from '@nestjs/sequelize';
 import { Host } from 'src/host/host.model';
 import { User } from 'src/user/user.model';
 import { Booking } from './booking.model';
+import { AuthModule } from 'src/auth/auth.module';
 
 @Module({
   controllers: [BookingController],
   providers: [BookingService],
-  imports: [SequelizeModule.forFeature([Booking, Host, User])],
+  imports: [SequelizeModule.forFeature([Booking, Host, User]), AuthModule],
+  exports: [BookingService]
 })
 export class BookingModule {}

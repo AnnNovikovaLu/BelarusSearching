@@ -2,20 +2,15 @@ import {
   BelongsTo,
   Column,
   DataType,
+  ForeignKey,
   Model,
   Table,
 } from 'sequelize-typescript';
 import { Host } from 'src/host/host.model';
 import { User } from 'src/user/user.model';
 
-interface BookingCreationAttrs {
-  city: string;
-  address: string;
-  guestCount: number;
-}
-
 @Table({ tableName: 'bookings' })
-export class Booking extends Model<Booking, BookingCreationAttrs> {
+export class Booking extends Model<Booking> {
   @Column({
     type: DataType.INTEGER,
     unique: true,
@@ -24,11 +19,16 @@ export class Booking extends Model<Booking, BookingCreationAttrs> {
   })
   id: number;
 
+  @ForeignKey(() => User)
   @Column({ type: DataType.INTEGER, allowNull: false })
-  guestCount: number;
+  userId: number;
 
   @BelongsTo(() => User)
   user: User;
+
+  @ForeignKey(() => Host)
+  @Column({ type: DataType.INTEGER, allowNull: false })
+  hostId: number;
 
   @BelongsTo(() => Host)
   host: Host;
