@@ -7,10 +7,15 @@ import { User } from 'src/user/user.model';
 import { FilesModule } from 'src/files/files.module';
 import { AuthModule } from 'src/auth/auth.module';
 import { Booking } from 'src/booking/booking.model';
+import { Review } from 'src/review/review.model';
 
 @Module({
   controllers: [HostController],
   providers: [HostService],
-  imports: [SequelizeModule.forFeature([Host, User, Booking]), FilesModule, AuthModule],
+  imports: [
+    SequelizeModule.forFeature([Host, User, Booking, Review]),
+    FilesModule,
+    AuthModule,
+  ],
 })
 export class HostModule {}

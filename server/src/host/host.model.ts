@@ -8,6 +8,7 @@ import {
   Table,
 } from 'sequelize-typescript';
 import { Booking } from 'src/booking/booking.model';
+import { Review } from 'src/review/review.model';
 import { User } from 'src/user/user.model';
 
 interface HostCreationAttrs {
@@ -49,4 +50,7 @@ export class Host extends Model<Host, HostCreationAttrs> {
 
   @HasMany(() => Booking)
   bookings: Booking[];
+
+  @HasMany(() => Review)
+  reviews: Review[];
 }

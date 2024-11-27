@@ -73,7 +73,7 @@ export class UserController {
     if (userId !== parsedId) {
       throw new ForbiddenException('You can obtain only your own bookings');
     }
-    
+
     return this.userService.getUserBookings(userId);
   }
 }

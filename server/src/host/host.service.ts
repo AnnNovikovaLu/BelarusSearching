@@ -1,10 +1,24 @@
-import { Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { Host } from './host.model';
 import { FilesService } from 'src/files/files.service';
 import { CreateHostDto } from './dto/create-host.dto';
-import { Sequelize } from 'sequelize';
+import { Op, Sequelize } from 'sequelize';
 import { Booking } from 'src/booking/booking.model';
+import { Review } from 'src/review/review.model';
+
+interface GetAllHostsOptions {
+  page?: number;
+  limit?: number;
+  sortBy?: string;
+  sortOrder?: 'ASC' | 'DESC';
+  search?: string;
+  filters?: string;
+}
 
 @Injectable()
 export class HostService {
@@ -47,20 +61,130 @@ export class HostService {
     await host.destroy();
   }
 
-  async findAll(): Promise<Host[]> {
-    return this.hostModel.findAll();
+  async findAll(options: GetAllHostsOptions) {
+    const {
+      page = 1,
+      limit = 3,
+      sortBy = 'updatedAt',
+      sortOrder = 'DESC',
+      search,
+      filters,
+    } = options;
+
+    const offset = (page - 1) * limit;
+
+    const where: any = {};
+
+    if (search) {
+      where[Op.or] = [
+        { city: { [Op.iLike]: `%${search}%` } },
+        { address: { [Op.iLike]: `%${search}%` } },
+      ];
+    }
+
+    if (filters) {
+      const parsedFilters = JSON.parse(filters);
+
+      if (
+        parsedFilters.guestCountMin !== undefined ||
+        parsedFilters.guestCountMax !== undefined
+      ) {
+        where.guestCount = {};
+        if (parsedFilters.guestCountMin !== undefined)
+          where.guestCount[Op.gte] = parsedFilters.guestCountMin;
+        if (parsedFilters.guestCountMax !== undefined)
+          where.guestCount[Op.lte] = parsedFilters.guestCountMax;
+      }
+    }
+
+    const hosts = await this.hostModel.findAndCountAll({
+      where,
+      include: [{ all: true }],
+      distinct: true,
+      limit,
+      offset,
+      order: [[sortBy, sortOrder]],
+    });
+
+    return {
+      data: hosts.rows,
+      pagination: {
+        total: hosts.count,
+        current_page: Number(page),
+        limit: Number(limit),
+        total_pages: Math.ceil(hosts.count / limit),
+      },
+    };
   }
 
-  async findAvailableHosts(): Promise<Host[]> {
-    return this.hostModel.findAll({
+  async findAvailableHosts(options: GetAllHostsOptions) {
+    const {
+      page = 1,
+      limit = 3,
+      sortBy = 'updatedAt',
+      sortOrder = 'DESC',
+      search,
+      filters,
+    } = options;
+
+    const offset = (page - 1) * limit;
+
+    const where: any = {};
+
+    if (search) {
+      where[Op.or] = [
+        { city: { [Op.iLike]: `%${search}%` } },
+        { address: { [Op.iLike]: `%${search}%` } },
+      ];
+    }
+
+    if (filters) {
+      const parsedFilters = JSON.parse(filters);
+
+      if (
+        parsedFilters.guestCountMin !== undefined ||
+        parsedFilters.guestCountMax !== undefined
+      ) {
+        where.guestCount = {};
+        if (parsedFilters.guestCountMin !== undefined)
+          where.guestCount[Op.gte] = parsedFilters.guestCountMin;
+        if (parsedFilters.guestCountMax !== undefined)
+          where.guestCount[Op.lte] = parsedFilters.guestCountMax;
+      }
+    }
+
+    const hosts = await this.hostModel.findAndCountAll({
+      where: Sequelize.and(
+        where,
+        Sequelize.literal(`
+          NOT EXISTS (
+            SELECT 1
+            FROM bookings
+            WHERE "bookings"."hostId" = "Host"."id"
+          )
+        `),
+      ),
       include: [
         {
           model: Booking,
           required: false,
         },
       ],
-      where: Sequelize.where(Sequelize.col('bookings.id'), null),
+      limit,
+      offset,
+      order: [[sortBy, sortOrder]],
+      distinct: true,
     });
+
+    return {
+      data: hosts.rows,
+      pagination: {
+        total: hosts.count,
+        current_page: Number(page),
+        limit: Number(limit),
+        total_pages: Math.ceil(hosts.count / limit),
+      },
+    };
   }
 
   async findById(id: number): Promise<Host> {
@@ -73,5 +197,17 @@ export class HostService {
 
   async findAllByUserId(userId: number): Promise<Host[]> {
     return this.hostModel.findAll({ where: { userId } });
+  }
+
+  async getHostReviews(id: number) {
+    const host = await this.hostModel.findByPk(id, {
+      include: { model: Review },
+    });
+
+    if (!host) {
+      throw new NotFoundException('Host not found');
+    }
+
+    return host.reviews;
   }
 }

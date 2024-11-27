@@ -11,6 +11,10 @@ import { AuthModule } from 'src/auth/auth.module';
 @Module({
   controllers: [GroupController],
   providers: [GroupService],
-  imports: [SequelizeModule.forFeature([Group, User, GroupUser]), FilesModule, AuthModule],
+  imports: [
+    SequelizeModule.forFeature([Group, User, GroupUser]),
+    FilesModule,
+    AuthModule,
+  ],
 })
 export class GroupModule {}

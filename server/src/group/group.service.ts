@@ -1,4 +1,8 @@
-import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
+import {
+  ConflictException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { GroupUser } from 'src/group_user/group_user.model';
 import { Group } from './group.model';
@@ -14,10 +18,7 @@ export class GroupService {
     private readonly fileService: FilesService,
   ) {}
 
-  async createGroup(
-    dto: CreateGroupDto,
-    image,
-  ): Promise<Group> {
+  async createGroup(dto: CreateGroupDto, image): Promise<Group> {
     let fileName: string | null = null;
     if (image) {
       fileName = await this.fileService.createImage(image);

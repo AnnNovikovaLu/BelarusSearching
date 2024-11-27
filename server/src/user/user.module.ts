@@ -24,7 +24,7 @@ import { BookingModule } from 'src/booking/booking.module';
       GroupUser,
     ]),
     forwardRef(() => AuthModule),
-    BookingModule
+    BookingModule,
   ],
   exports: [UserService],
 })

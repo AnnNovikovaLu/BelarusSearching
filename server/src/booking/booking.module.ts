@@ -11,6 +11,6 @@ import { AuthModule } from 'src/auth/auth.module';
   controllers: [BookingController],
   providers: [BookingService],
   imports: [SequelizeModule.forFeature([Booking, Host, User]), AuthModule],
-  exports: [BookingService]
+  exports: [BookingService],
 })
 export class BookingModule {}

@@ -12,10 +12,7 @@ export class ActivityService {
     private readonly fileService: FilesService,
   ) {}
 
-  async create(
-    createActivityDto: CreateActivityDto,
-    image,
-  ): Promise<Activity> {
+  async create(createActivityDto: CreateActivityDto, image): Promise<Activity> {
     let fileName: string | null = null;
     if (image) {
       fileName = await this.fileService.createImage(image);
@@ -45,7 +42,7 @@ export class ActivityService {
     if (!activity) {
       throw new NotFoundException('Activity not found');
     }
-  
+
     let fileName = activity.image;
     if (image) {
       if (activity.image) {
@@ -53,7 +50,7 @@ export class ActivityService {
       }
       fileName = await this.fileService.createImage(image);
     }
-  
+
     await activity.update({ ...updateActivityDto, image: fileName });
     return activity;
   }
