@@ -1,0 +1,39 @@
+
+.group-card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin: 15px;
+    transition: transform 0.3s;
+}
+
+.group-card:hover {
+    transform: scale(1.05);
+}
+
+.group-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.group-info {
+    padding: 15px;
+}
+
+.group-title {
+    font-size: 18px;
+    margin: 0 0 10px;
+}
+
+.group-description {
+    font-size: 14px;
+    margin: 0 0 5px;
+}
+.member-avatar {
+    width: 30px; /* Ширина аватара */
+    height: 30px; /* Высота аватара */
+    border-radius: 50%; /* Круглая форма */
+    margin-right: 5px; /* Отступ между изображением и текстом */
+  }

@@ -1,0 +1,136 @@
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: transparent;
+    padding: 0;
+    max-width: 90%;
+    max-height: 90%;
+    overflow: hidden;
+}
+.close-button {
+    position: absolute; /* Абсолютное позиционирование */
+    top: 10px; /* Отступ сверху */
+    right: 10px; /* Отступ справа */
+    width: 30px; /* Ширина кнопки */
+    height: 30px; /* Высота кнопки */
+    background: none; /* Без фона */
+    border: none; /* Без рамки */
+    color: white; /* Цвет текста */
+    font-size: 24px; /* Размер шрифта */
+    cursor: pointer; /* Курсор указателя */
+    display: flex; /* Flexbox для центрирования */
+    align-items: center; /* Центрирование по вертикали */
+    justify-content: center; /* Центрирование по горизонтали */
+}
+.slider {
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: 10px;
+}
+
+.slider-item {
+    position: relative;
+    width: 100%;
+}
+
+.slider-image {
+    width: calc(100% - 20px);
+    height: auto;
+    border-radius: 5px;
+}
+
+.slider-info {
+    text-align: center;
+    color: white;
+    margin-top: 10px;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 10px;
+    border-radius: 5px;
+    width: calc(100% - 20px);
+    box-sizing: border-box;
+}
+
+.navi-button {
+    background: none;
+    border: none;
+    font-size: 36px;
+    color: white;
+    cursor: pointer;
+    margin: 0 10px;
+}
+
+.map-link {
+    display: inline-block;
+    margin-top: 10px;
+    color: #00ccff;
+    text-decoration: none;
+}
+
+.map-link:hover {
+    text-decoration: underline;
+}
+
+.close-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 20px;
+}
+
+.close-button:hover {
+    background-color: #0056b3;
+}
+
+
+
+/* .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; 
+}
+
+.modal-content {
+    background-color: white; 
+    padding: 20px;
+    border-radius: 8px; 
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
+    max-width: 500px;
+    width: 100%; 
+}
+
+.close-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.close-button:hover {
+    background-color: #0056b3; 
+} */

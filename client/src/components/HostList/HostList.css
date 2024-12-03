@@ -1,0 +1,191 @@
+.host-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Центрирование содержимого */
+  padding: 20px;
+  background-color: #f8f9fa; /* Легкий фон для всего списка */
+}
+
+.search-container {
+  display: flex;
+  justify-content: center; /* Центрирование контейнера поиска */
+  width: 100%; /* Полная ширина */
+  margin-bottom: 20px; /* Отступ снизу */
+}
+
+.search-input {
+  width: 70%; /* Ширина поля поиска */
+  padding: 12px 15px; /* Увеличенные отступы */
+  border: 1px solid #ccc; /* Рамка */
+  border-radius: 4px; /* Скругление углов */
+  font-size: 16px; /* Размер шрифта */
+  font-family: Arial, sans-serif; /* Шрифт */
+  transition: border-color 0.3s, box-shadow 0.3s; /* Плавный переход */
+}
+
+.guest-select {
+  padding: 12px; /* Отступы для выпадающего списка */
+  margin-left: 10px; /* Отступ слева */
+  border: 1px solid #ccc; /* Рамка */
+  border-radius: 4px; /* Скругление углов */
+  font-size: 16px; /* Размер шрифта */
+  font-family: Arial, sans-serif; /* Шрифт */
+  transition: border-color 0.3s, box-shadow 0.3s; /* Плавный переход */
+}
+
+.search-input:focus,
+.guest-select:focus {
+  border-color: #007bff; /* Цвет рамки при фокусе */
+  outline: none; /* Убираем стандартный контур */
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Легкая тень при фокусе */
+}
+
+.hosts {
+  display: flex;
+  flex-wrap: wrap; /* Позволяет карточкам переноситься на следующую строку */
+  justify-content: space-between; /* Распределение карточек по всей ширине */
+  width: 100%; /* Занимает полную ширину */
+}
+
+.host-card {
+  background-color: white; /* Фон карточки */
+  border: 1px solid #e5e5e5; /* Рамка карточки */
+  border-radius: 8px; /* Скругление углов */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Легкая тень для карточки */
+  flex: 1 1 calc(33.33% - 20px); /* Три карточки в строке с отступами */
+  margin: 10px; /* Отступы между карточками */
+  box-sizing: border-box; /* Учитываем отступы в ширине карточек */
+  transition: transform 0.3s; /* Анимация при наведении */
+}
+
+.host-card:hover {
+  transform: translateY(-5px); /* Подъем карточки при наведении */
+}
+
+@media (max-width: 768px) {
+  .host-card {
+      flex: 1 1 calc(50% - 20px); /* Две карточки на более узких экранах */
+  }
+}
+
+@media (max-width: 480px) {
+  .host-card {
+      flex: 1 1 100%; /* Одна карточка на узких экранах */
+  }
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.pagination button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 15px;
+  margin: 0 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.pagination button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.pagination button:hover:not(:disabled) {
+  background-color: #0056b3; /* Темнее при наведении */
+}
+
+.pagination span {
+  margin: 0 10px;
+  font-size: 16px;
+}
+
+
+
+/*  .host-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; 
+    padding: 20px;
+  }
+  
+  .host-card {
+    flex: 1 1 calc(33.33% - 20px); 
+    margin: 10px; 
+    box-sizing: border-box; 
+  }
+  
+  @media (max-width: 768px) {
+    .host-card {
+      flex: 1 1 calc(50% - 20px); 
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .host-card {
+      flex: 1 1 100%; 
+    }
+  }
+  .host-list input[type="text"],
+  .host-list select {
+      width: 250px; 
+      padding: 12px 15px; 
+      margin: 10px 0;
+      border: 1px solid #ccc; 
+      border-radius: 4px; 
+      font-size: 16px; 
+      font-family: Arial, sans-serif; 
+      transition: border-color 0.3s, box-shadow 0.3s; 
+  }
+  
+  .host-list input[type="text"]:focus,
+  .host-list select:focus {
+      border-color: #007bff; 
+      outline: none; 
+      box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); 
+  }
+  
+  .guest-filter {
+      display: flex;
+      flex-direction: column;
+      align-items: center; 
+  }
+  
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+  }
+  
+  .pagination button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 15px;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .pagination button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  .pagination button:hover:not(:disabled) {
+    background-color: #0056b3; 
+  }
+  
+  .pagination span {
+    margin: 0 10px;
+    font-size: 16px;
+  }  */
