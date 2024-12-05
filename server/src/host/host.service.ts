@@ -10,6 +10,8 @@ import { CreateHostDto } from './dto/create-host.dto';
 import { Op, Sequelize } from 'sequelize';
 import { Booking } from 'src/booking/booking.model';
 import { Review } from 'src/review/review.model';
+import { Verification } from 'src/verification/verification.model';
+import { User } from 'src/user/user.model';
 
 interface GetAllHostsOptions {
   page?: number;
@@ -188,7 +190,14 @@ export class HostService {
   }
 
   async findById(id: number): Promise<Host> {
-    const host = await this.hostModel.findByPk(id);
+    const host = await this.hostModel.findByPk(id, {
+      include: [
+        {
+          model: User,
+          include: [Verification],
+        },
+      ],
+    });
     if (!host) {
       throw new NotFoundException('Host not found');
     }
@@ -209,5 +218,37 @@ export class HostService {
     }
 
     return host.reviews;
+  }
+
+  //
+
+  async findHostDetailsById(id: number) {
+    const host = await this.hostModel.findByPk(id, {
+      include: [
+        {
+          model: User,
+          include: [Verification], // Включаем верификацию пользователя
+        },
+      ],
+    });
+
+    if (!host) {
+      throw new NotFoundException('Host not found');
+    }
+
+    return host; // Возвращаем информацию о квартире и хозяине
+  }
+
+  async findAllHostsWithDetails() {
+    const hosts = await this.hostModel.findAll({
+      include: [
+        {
+          model: User,
+          include: [Verification], // Включаем верификацию пользователя
+        },
+      ],
+    });
+
+    return hosts; // Возвращаем массив квартир с информацией о хозяевах
   }
 }

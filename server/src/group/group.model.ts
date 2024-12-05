@@ -34,5 +34,5 @@ export class Group extends Model<Group, GroupCreationAttrs> {
   description: string;
 
   @BelongsToMany(() => User, () => GroupUser)
-  users: User;
+  users: User[];
 }

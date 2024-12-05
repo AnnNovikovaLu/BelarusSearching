@@ -16,6 +16,7 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { CreateGroupDto } from './dto/create-group.dto';
 import { UpdateGroupDto } from './dto/update-group.dto';
 import { JwtAuthGuard } from 'src/Guards/jwt-auth.guard';
+import { Group } from './group.model';
 
 @Controller('groups')
 export class GroupController {
@@ -68,5 +69,13 @@ export class GroupController {
   async leaveGroup(@Param('id') groupId: number, @Req() req: any) {
     const userId = req.user.id;
     return this.groupService.removeUserFromGroup(groupId, userId);
+  }
+
+//
+
+
+  @Get(':id')
+  async getGroupWithMembers(@Param('id') id: number): Promise<Group> {
+    return this.groupService.findGroupWithMembers(id);
   }
 }

@@ -9,6 +9,8 @@ import { Group } from './group.model';
 import { FilesService } from 'src/files/files.service';
 import { CreateGroupDto } from './dto/create-group.dto';
 import { UpdateGroupDto } from './dto/update-group.dto';
+import { User } from 'src/user/user.model';
+import { Verification } from 'src/verification/verification.model';
 
 @Injectable()
 export class GroupService {
@@ -17,6 +19,18 @@ export class GroupService {
     @InjectModel(GroupUser) private readonly groupUserModel: typeof GroupUser,
     private readonly fileService: FilesService,
   ) {}
+
+  async findGroupWithMembers(id: number): Promise<Group> {
+    return Group.findOne({
+      where: { id },
+      include: [
+        {
+          model: User,
+          include: [Verification],
+        },
+      ],
+    });
+  }
 
   async createGroup(dto: CreateGroupDto, image): Promise<Group> {
     let fileName: string | null = null;
@@ -33,7 +47,14 @@ export class GroupService {
   }
 
   async getAllGroups(): Promise<Group[]> {
-    return this.groupModel.findAll({ include: { all: true } });
+    return this.groupModel.findAll({
+      include: [
+        {
+          model: User,
+          include: [Verification],
+        },
+      ],
+    });
   }
 
   async getGroupById(id: number): Promise<Group> {

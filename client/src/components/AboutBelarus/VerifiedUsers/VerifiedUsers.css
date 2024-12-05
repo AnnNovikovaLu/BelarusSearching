@@ -1,0 +1,28 @@
+.verified-users-container {
+    display: flex; /* Используем Flexbox для центрирования */
+    justify-content: center;
+    max-width: 800px; /* Максимальная ширина */
+    margin: auto; /* Центрирование */
+    padding: 10px; /* Внутренние отступы */
+    text-align: center; /* Центрирование текста */
+  }
+  .text_belarus{
+    color: #101111; /* Цвет заголовка */
+    font-size: 24px; /* Размер заголовка */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+  }
+  
+  .verified-users-grid {
+    display: grid; /* Используем CSS Grid для расположения изображений */
+    grid-template-columns: repeat(3, 1fr); /* 3 колонки */
+    gap: 15px; /* Отступ между изображениями */
+    max-width: 800px; /* Ограничение максимальной ширины сетки */
+    width: 100%; /* Занимает всю доступную ширину контейнера */
+}
+  
+  .verified-user-image {
+    width: 70px; /* Ширина изображения */
+    height: 70px; /* Высота изображения */
+    border-radius: 50%; /* Закругляем изображение для создания круга */
+    object-fit: cover; /* Обрезаем изображение, чтобы оно соответствовало размеру */
+  }

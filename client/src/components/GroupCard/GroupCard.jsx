@@ -1,21 +1,19 @@
 import React, { useState } from "react";
-import "./GroupCard.css"; 
-import imageAPI from "../../services/imageApi"; 
+import "./GroupCard.css";
+import imageAPI from "../../services/imageAPI";
 
 const GroupCard = ({ group }) => {
   const [isMember, setIsMember] = useState(false);
-  console.log(group); 
+  console.log(group);
 
   const handleJoinGroup = () => {
-    
     console.log(`Joining group: ${group.title}`);
-    setIsMember(true); 
+    setIsMember(true);
   };
 
   const handleLeaveGroup = () => {
-    
     console.log(`Leaving group: ${group.title}`);
-    setIsMember(false); 
+    setIsMember(false);
   };
 
   return (

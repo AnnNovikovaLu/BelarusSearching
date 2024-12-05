@@ -18,10 +18,12 @@ class ServerAPI {
         surname: userDto.surname,
         email: userDto.email,
         password: userDto.password,
+        dateOfBirth: userDto.dateOfBirth,
       });
 
       successCallback?.(response.data);
     } catch (error) {
+      console.log("Ok");
       if (error.response) {
         errorCallback?.(error.response.data.message);
       } else {
@@ -95,6 +97,8 @@ class ServerAPI {
           user: response.data,
           isVerified: true,
         });
+
+        return;
       }
       callback?.({
         isAuthorized: true,
@@ -156,6 +160,48 @@ class ServerAPI {
       }
     }
   }
+
+  async createHost(hostDto, successCallback, errorCallback) {
+    try {
+      const token = this.getToken();
+
+      const response = await this.api.post(`hosts`, hostDto, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "multipart/form-data",
+        },
+      });
+
+      successCallback?.(response.data);
+    } catch (error) {
+      if (error.response) {
+        errorCallback?.(error.response.data.message);
+      } else {
+        errorCallback?.("Error");
+      }
+    }
+  }
+
+  async createReview(reviewDto, successCallback, errorCallback) {
+    try {
+        const token = this.getToken();
+
+        const response = await this.api.post(`reviews`, reviewDto, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json",
+            },
+        });
+
+        successCallback?.(response.data);
+    } catch (error) {
+        if (error.response) {
+            errorCallback?.(error.response.data.message);
+        } else {
+            errorCallback?.("Error");
+        }
+    }
+}
 
   async getAvailableHosts(params) {
     const response = await this.api.get("hosts/available");

@@ -27,7 +27,7 @@ const ActivityForm = ({ onActivityAdded }) => {
 
     try {
       createActivity(formDataToSend);
-      location.reload()
+      location.reload();
     } catch (err) {
       console.error("Error creating activity:", err);
     }

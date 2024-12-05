@@ -3,5 +3,4 @@ export class CreateActivityDto {
   readonly datetime: string;
   readonly title: string;
   readonly description: string;
-  readonly image: string;
 }

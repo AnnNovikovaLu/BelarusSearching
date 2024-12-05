@@ -2,8 +2,9 @@ import { Column, DataType, Model, Table } from 'sequelize-typescript';
 
 interface ActivityCreationAttrs {
   city: string;
-  address: string;
-  guestCount: number;
+  datetime: string;
+  title: string;
+  description: string;
   image: string;
 }
 

@@ -24,6 +24,8 @@ import {
   changeIsVerified,
   changeUserInfo,
 } from "./store/slices/userSlice";
+import VerificationProfile from "./components/VerificationProfile/VerificationProfile";
+import RegisterPage from "./components/Register/Register";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -53,10 +55,22 @@ const App = () => {
           path="/login"
           element={!isAuth ? <LoginPage /> : <Navigate to="/" />}
         />
-        {/* <Route
-          path={routes.registration}
-          element={!isAuth ? <Registration /> : <Navigate to="/" />}
-        /> */}
+
+        <Route
+          path="/verification"
+          element={
+            isAuth && !isVerified ? (
+              <VerificationProfile />
+            ) : (
+              <Navigate to="/" />
+            )
+          }
+        />
+
+        <Route
+          path="/registration"
+          element={!isAuth ? <RegisterPage /> : <Navigate to="/" />}
+        />
       </Routes>
     </BrowserRouter>
   );

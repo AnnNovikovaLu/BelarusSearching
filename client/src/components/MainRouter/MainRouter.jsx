@@ -5,6 +5,8 @@ import AboutBelarus from "../AboutBelarus/AboutBelarus";
 import GroupList from "../GroupList/GroupList";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
+import VerificationProfile from "../VerificationProfile/VerificationProfile";
+import HostForm from "../AddHost/AddHost";
 import {
   BrowserRouter as Router,
   Routes,
@@ -12,6 +14,7 @@ import {
   BrowserRouter,
   Navigate,
 } from "react-router-dom";
+import Review from "../Review/Review";
 
 const MainRouter = () => {
   return (
@@ -34,6 +37,8 @@ const MainRouter = () => {
         />
         <Route path="/activities" element={<ActivitiesList />} />
         <Route path="/groups" element={<GroupList />} />
+        <Route path="/add-host" element={<HostForm />} />
+        <Route path="/hosts/:id/reviews" element={<Review />} />
         <Route path="/*" element={<Navigate to="/" replace />} />
       </Routes>
       <Footer></Footer>

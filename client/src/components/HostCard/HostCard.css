@@ -7,10 +7,13 @@
     transition: transform 0.3s;
   }
   
-  .host-card:hover {
+    .host-card:hover {
     transform: scale(1.05);
   }
-  
+  .host-link {
+    text-decoration: none; /* Убираем подчеркивание */
+    color: inherit; /* Наследуем цвет текста */
+  }
   .host-image {
     width: 100%;
     height: 180px;
@@ -19,16 +22,21 @@
   
   .host-info {
     padding: 15px;
+    text-decoration: none;
   }
   
   .host-title {
     font-size: 18px;
     margin: 0 0 10px;
+    text-decoration: none;
   }
   
   .host-description {
     font-size: 14px;
     margin: 0 0 5px;
+  }
+  h3 .host-city{
+    text-decoration: none;
   }
   
   .host-price {

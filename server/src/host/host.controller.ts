@@ -93,4 +93,15 @@ export class HostController {
   getUserBookings(@Param('id') id: number) {
     return this.hostService.getHostReviews(id);
   }
+
+
+  @Get(':id/details')
+async getHostDetails(@Param('id') id: number) {
+  return this.hostService.findHostDetailsById(id);
+}
+
+@Get()
+async getAllHosts() {
+  return this.hostService.findAllHostsWithDetails();
+}
 }

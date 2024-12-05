@@ -1,0 +1,57 @@
+.verification-container {
+    max-width: 500px; /* Максимальная ширина контейнера */
+    width: 90%; /* Ширина 90% для мобильных устройств */
+    margin: auto; /* Центрирование по горизонтали */
+    padding: 40px; /* Внутренние отступы */
+    background-color: #f9f9f9; /* Светлый фон */
+    border-radius: 10px; /* Закругленные углы */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Легкая тень */
+    margin-top: 50px; /* Отступ сверху */
+  }
+  
+  h2 {
+    text-align: center; /* Центрирование заголовка */
+    color: #00796b; /* Цвет заголовка */
+  }
+  
+  .error {
+    color: #d32f2f; /* Красный цвет для ошибок */
+    text-align: center; /* Центрирование текста ошибки */
+  }
+  
+  .verification-form {
+    display: flex; /* Используем Flexbox для формы */
+    flex-direction: column; /* Вертикальное расположение элементов */
+  }
+  
+  .form-group {
+    margin-bottom: 15px; /* Отступы между группами */
+  }
+  
+  label {
+    margin-bottom: 5px; /* Отступ снизу для меток */
+    font-weight: bold; /* Полужирный текст для меток */
+  }
+  
+  .form-input {
+    padding: 10px; /* Отступы внутри полей ввода */
+    border: 1px solid #ccc; /* Цвет рамки */
+    border-radius: 5px; /* Закругленные углы */
+    width: 100%; /* Полная ширина */
+    box-sizing: border-box; /* Учитываем отступы в ширине */
+  }
+  
+  .verification-button {
+    padding: 10px; /* Отступы внутри кнопки */
+    border: none; /* Убираем рамку */
+    border-radius: 5px; /* Закругленные углы */
+    background-color: #4CAF50; /* Зеленый цвет */
+    color: white; /* Цвет текста */
+    cursor: pointer; /* Курсор при наведении */
+    font-size: 1em; /* Размер шрифта */
+    transition: background-color 0.3s; /* Плавный переход цвета */
+  }
+  
+  .verification-button:hover {
+    background-color: #45a049; /* Темнее при наведении */
+  }
