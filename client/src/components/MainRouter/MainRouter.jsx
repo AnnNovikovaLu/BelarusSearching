@@ -7,6 +7,7 @@ import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import VerificationProfile from "../VerificationProfile/VerificationProfile";
 import HostForm from "../AddHost/AddHost";
+import Profile from "../Profile/Profile";
 import {
   BrowserRouter as Router,
   Routes,
@@ -39,6 +40,7 @@ const MainRouter = () => {
         <Route path="/groups" element={<GroupList />} />
         <Route path="/add-host" element={<HostForm />} />
         <Route path="/hosts/:id/reviews" element={<Review />} />
+         <Route path="/profile" element={<Profile />} /> 
         <Route path="/*" element={<Navigate to="/" replace />} />
       </Routes>
       <Footer></Footer>

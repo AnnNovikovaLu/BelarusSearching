@@ -2,10 +2,18 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./HostCard.css";
 import imageAPI from "../../services/imageAPI";
+import { downloadBookingReportDOCX } from "../../utils/Reports";
+import serverAPI from "../../services/serverAPI";
 
 const HostCard = ({ host }) => {
   const handleBook = () => {
     console.log(`Booking host with ID: ${host.id}`);
+    serverAPI.createBooking({ hostId: host.id }, successBook);
+  };
+
+  const successBook = (data) => {
+    downloadBookingReportDOCX(data.id);
+    // location.reload();
   };
 
   const handleReview = () => {

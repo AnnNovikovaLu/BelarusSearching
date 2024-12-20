@@ -184,24 +184,45 @@ class ServerAPI {
 
   async createReview(reviewDto, successCallback, errorCallback) {
     try {
-        const token = this.getToken();
+      const token = this.getToken();
 
-        const response = await this.api.post(`reviews`, reviewDto, {
-            headers: {
-                Authorization: `Bearer ${token}`,
-                "Content-Type": "application/json",
-            },
-        });
+      const response = await this.api.post(`reviews`, reviewDto, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      });
 
-        successCallback?.(response.data);
+      successCallback?.(response.data);
     } catch (error) {
-        if (error.response) {
-            errorCallback?.(error.response.data.message);
-        } else {
-            errorCallback?.("Error");
-        }
+      if (error.response) {
+        errorCallback?.(error.response.data.message);
+      } else {
+        errorCallback?.("Error");
+      }
     }
-}
+  }
+
+  async createBooking(bookingDto, successCallback, errorCallback) {
+    try {
+      const token = this.getToken();
+
+      const response = await this.api.post(`bookings`, bookingDto, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      });
+
+      successCallback?.(response.data);
+    } catch (error) {
+      if (error.response) {
+        errorCallback?.(error.response.data.message);
+      } else {
+        errorCallback?.("Error");
+      }
+    }
+  }
 
   async getAvailableHosts(params) {
     const response = await this.api.get("hosts/available");
@@ -246,6 +267,14 @@ class ServerAPI {
 
   setToken(token) {
     storageAPI.set("token", token);
+  }
+
+  async getBookingReportDOCX(id) {
+    const response = await this.api.get(`reports/booking/${id}/docx`, {
+      responseType: "blob",
+    });
+
+    return response.data;
   }
 }
 

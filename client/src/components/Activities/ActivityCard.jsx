@@ -10,8 +10,8 @@ const ActivityCard = ({ activity, onEdit, onDelete }) => {
       <p>{activity.description}</p>
       <p>{activity.city}</p> {/* Отображение города */}
       <div className="activity-card-buttons">
-        <button onClick={() => onEdit(activity)}>Edit</button>
-        <button onClick={() => onDelete(activity.id)}>Delete</button>
+        <button onClick={() => onEdit(activity)}>Редактировать</button>
+        <button onClick={() => onDelete(activity.id)}>Удалить</button>
       </div>
     </div>
   );

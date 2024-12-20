@@ -21,6 +21,7 @@ interface HostCreationAttrs {
 
 @Table({ tableName: 'hosts' })
 export class Host extends Model<Host, HostCreationAttrs> {
+  [x: string]: any;
   @Column({
     type: DataType.INTEGER,
     unique: true,

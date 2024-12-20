@@ -1,22 +1,40 @@
 .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Belarus_Mir_Mir_Castle_Complex_8101_2085.jpg/2560px-Belarus_Mir_Mir_Castle_Complex_8101_2085.jpg'); 
-    background-size: cover; 
-    background-position: center; 
-    height: 150px; 
-    color: #fff; 
-  }
-  /*https://planetabelarus.by/upload/iblock/265/2654ced2070786e3fa1860b0d2a39288.jpg  */
-  
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Belarus_Mir_Mir_Castle_Complex_8101_2085.jpg/2560px-Belarus_Mir_Mir_Castle_Complex_8101_2085.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 150px;
+  color: #fff;
+  flex-wrap: wrap;
+}
+/*https://planetabelarus.by/upload/iblock/265/2654ced2070786e3fa1860b0d2a39288.jpg  */
+
+.logo {
+  font-size: 56px;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Черная тень */
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.nav-button {
+  width: auto;
+}
+
+@media (max-width: 500px) {
   .logo {
-    font-size: 56px;
-    font-weight: bold;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Черная тень */
+    font-size: 35px;
   }
-  
-  .nav {
-    display: flex;
+
+  .nav-button {
+    font-size: 14px !important;
   }
+}

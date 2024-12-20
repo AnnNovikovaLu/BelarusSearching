@@ -49,7 +49,7 @@ const ActivitiesList = () => {
     return (
         <div className="activities-list">
             <button onClick={() => setIsFormVisible(!isFormVisible)}>
-                {isFormVisible ? 'Hide Form' : 'Add New Activity'}
+                {isFormVisible ? 'Скрыть форму' : 'Добавить новое мероприятие'}
             </button>
             {isFormVisible && <ActivityForm onActivityAdded={handleActivityAdded} />}
             {editingActivity ? (

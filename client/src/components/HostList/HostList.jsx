@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Импортируем useNavigate
-import HostCard from '../HostCard/HostCard';
-import { fetchHosts } from '../../services/hostService';
-import './HostList.css';
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom"; // Импортируем useNavigate
+import HostCard from "../HostCard/HostCard";
+import { fetchHosts } from "../../services/hostService";
+import "./HostList.css";
 
 const HostList = () => {
   const [hosts, setHosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [guestCount, setGuestCount] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
+  const [guestCount, setGuestCount] = useState("");
   const hostsPerPage = 3;
 
   const guestOptions = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -35,26 +35,30 @@ const HostList = () => {
     setGuestCount(event.target.value);
   };
 
-  const filteredHosts = hosts.filter(host => {
-    const matchesCity = host.city.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesGuestCount = guestCount ? host.guestCount >= Number(guestCount) : true;
+  const filteredHosts = hosts.filter((host) => {
+    const matchesCity = host.city
+      .toLowerCase()
+      .includes(searchTerm.toLowerCase());
+    const matchesGuestCount = guestCount
+      ? host.guestCount >= Number(guestCount)
+      : true;
     return matchesCity && matchesGuestCount;
   });
 
   const handleNextPage = () => {
     if (currentPage < totalPages) {
-      setCurrentPage(prev => prev + 1);
+      setCurrentPage((prev) => prev + 1);
     }
   };
 
   const handlePreviousPage = () => {
     if (currentPage > 1) {
-      setCurrentPage(prev => prev - 1);
+      setCurrentPage((prev) => prev - 1);
     }
   };
 
   const handleAddHostClick = () => {
-    navigate('/add-host'); // Используем navigate для перехода на страницу добавления нового хоста
+    navigate("/add-host"); // Используем navigate для перехода на страницу добавления нового хоста
   };
 
   return (
@@ -62,15 +66,21 @@ const HostList = () => {
       <div className="search-container">
         <input
           type="text"
-          placeholder="Search by city"
+          placeholder="Введите город для поиска"
           value={searchTerm}
           onChange={handleSearchChange}
           className="search-input"
         />
-        <select value={guestCount} onChange={handleGuestCountChange} className="guest-select">
-          <option value="">Select number of guests</option>
-          {guestOptions.map(option => (
-            <option key={option} value={option}>{option}</option>
+        <select
+          value={guestCount}
+          onChange={handleGuestCountChange}
+          className="guest-select"
+        >
+          <option value="">Выберите количество гостей</option>
+          {guestOptions.map((option) => (
+            <option key={option} value={option}>
+              {option}
+            </option>
           ))}
         </select>
       </div>
@@ -79,9 +89,7 @@ const HostList = () => {
       </button>
       <div className="hosts">
         {filteredHosts.length > 0 ? (
-          filteredHosts.map(host => (
-            <HostCard key={host.id} host={host} />
-          ))
+          filteredHosts.map((host) => <HostCard key={host.id} host={host} />)
         ) : (
           <p>No hosts found.</p>
         )}
@@ -90,7 +98,9 @@ const HostList = () => {
         <button onClick={handlePreviousPage} disabled={currentPage === 1}>
           Previous
         </button>
-        <span>Page {currentPage} of {totalPages}</span>
+        <span>
+          Page {currentPage} of {totalPages}
+        </span>
         <button onClick={handleNextPage} disabled={currentPage === totalPages}>
           Next
         </button>
@@ -100,9 +110,6 @@ const HostList = () => {
 };
 
 export default HostList;
-
-
-
 
 /* import React, { useEffect, useState } from 'react';
 import HostCard from '../HostCard/HostCard';
@@ -197,9 +204,6 @@ const HostList = () => {
 };
 
 export default HostList; */
-
-
-
 
 /* import React, { useEffect, useState } from 'react';
 import HostCard from '../HostCard/HostCard';
@@ -299,9 +303,6 @@ const HostList = () => {
 
 export default HostList; */
 
-
-
-
 /* import React, { useEffect, useState } from 'react';
 import HostCard from '../HostCard/HostCard';
 import { fetchHosts } from '../../services/hostService';
@@ -379,10 +380,3 @@ const HostList = () => {
 };
 
 export default HostList; */
-
-
-
-
-
-
-

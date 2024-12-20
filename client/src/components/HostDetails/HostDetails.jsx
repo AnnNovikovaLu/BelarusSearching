@@ -1,10 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import "./HostDetails.css";
 import imageAPI from "../../services/imageAPI";
+import { downloadBookingReportDOCX } from "../../utils/Reports";
+import serverAPI from "../../services/serverAPI";
 
 const HostDetails = () => {
+  const handleBook = () => {
+    console.log(`Booking host with ID: ${host.id}`);
+    serverAPI.createBooking({ hostId: host.id }, successBook);
+  };
+
+  const successBook = (data) => {
+    downloadBookingReportDOCX(data.id);
+    // location.reload();
+  };
+
   const { hostId } = useParams();
   const [host, setHost] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -43,8 +56,13 @@ const HostDetails = () => {
           <p>Максимальное количество гостей: {host.guestCount}</p>
           <img src={imageAPI.getImage(host.image)} alt={host.city} />
           <div className="button-container">
-            <button className="reserve-button">Забронировать</button>
-            <button className="review-button">Оставить отзыв</button>
+            <Link to={`/hosts/${host.id}/reviews`} className="review-button">
+              Оставить отзыв
+            </Link>
+
+            <button onClick={handleBook} className="book-button">
+              Забронировать
+            </button>
           </div>
         </div>
         <div className="user-info">

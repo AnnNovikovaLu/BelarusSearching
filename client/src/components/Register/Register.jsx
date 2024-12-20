@@ -74,6 +74,7 @@ const RegisterPage = () => {
   };
 
   return (
+    <div className="registration-background">
     <div className="register-container">
       <h2>Регистрация</h2>
       {error && <p className="error">{error}</p>}
@@ -143,6 +144,8 @@ const RegisterPage = () => {
         </button>
       </form>
     </div>
+    </div>
+    
   );
 };
 

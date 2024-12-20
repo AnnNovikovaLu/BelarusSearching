@@ -1,3 +1,14 @@
+.registration-background {
+  background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Belarus_Mir_Mir_Castle_Complex_8101_2085.jpg/2560px-Belarus_Mir_Mir_Castle_Complex_8101_2085.jpg'); /* Замените на ваш URL */
+  background-size: cover; /* Заполнение фона */
+  background-position: center; /* Центрирование изображения */
+  height: 100vh; /* Высота экрана */
+  display: flex; /* Flexbox для центрирования содержимого */
+  justify-content: center; /* Центрирование по горизонтали */
+  align-items: center; /* Центрирование по вертикали */
+}
+
+
 .register-container {
     max-width: 500px; /* Максимальная ширина контейнера */
     width: 90%; /* Ширина 90% для мобильных устройств */

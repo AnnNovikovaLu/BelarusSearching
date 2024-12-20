@@ -55,7 +55,7 @@ const ActivityForm = ({ onActivityAdded }) => {
   return (
     <form onSubmit={handleSubmit}>
       <div>
-        <label>City:</label>
+        <label>Город:</label>
         <input
           type="text"
           name="city"
@@ -66,7 +66,7 @@ const ActivityForm = ({ onActivityAdded }) => {
       </div>
 
       <div>
-        <label>Datetime:</label>
+        <label>Дата:</label>
         <input
           type="datetime-local"
           name="datetime"
@@ -77,7 +77,7 @@ const ActivityForm = ({ onActivityAdded }) => {
       </div>
 
       <div>
-        <label>Title:</label>
+        <label>Название:</label>
         <input
           type="text"
           name="title"
@@ -88,7 +88,7 @@ const ActivityForm = ({ onActivityAdded }) => {
       </div>
 
       <div>
-        <label>Description:</label>
+        <label>Описание:</label>
         <textarea
           name="description"
           value={formData.description}
@@ -98,11 +98,11 @@ const ActivityForm = ({ onActivityAdded }) => {
       </div>
 
       <div>
-        <label>Image:</label>
+        <label>Фотография:</label>
         <input type="file" name="image" onChange={handleChange} required />
       </div>
 
-      <button type="submit">Create Activity</button>
+      <button type="submit">Добавить мероприятие</button>
     </form>
   );
 };
