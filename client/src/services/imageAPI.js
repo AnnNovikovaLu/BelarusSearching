@@ -1,5 +1,5 @@
 class ImageAPI {
-  baseUrl = "http://localhost:5000";
+  baseUrl = import.meta.env.VITE_API_URL;
 
   getImage(image) {
     return `${this.baseUrl}/${image}`;

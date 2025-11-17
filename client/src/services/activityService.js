@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:5000/api/activities";
+const API_URL = `${import.meta.env.VITE_API_URL}/api/activities`;
 export const fetchActivities = async (page = 1, limit = 3) => {
   try {
     const response = await fetch(`${API_URL}?page=${page}&limit=${limit}`);
@@ -23,7 +23,7 @@ export const createActivity = async (activityData) => {
   try {
     const response = await axios.post(API_URL, activityData, {
       headers: {
-        "Content-Type": "multipart/form-data",  
+        "Content-Type": "multipart/form-data",
       },
     });
     return response.data; // Возвращаем данные созданной активности

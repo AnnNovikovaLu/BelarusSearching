@@ -8,13 +8,7 @@ import Footer from "../Footer/Footer";
 import VerificationProfile from "../VerificationProfile/VerificationProfile";
 import HostForm from "../AddHost/AddHost";
 import Profile from "../Profile/Profile";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  BrowserRouter,
-  Navigate,
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, BrowserRouter, Navigate } from "react-router-dom";
 import Review from "../Review/Review";
 
 const MainRouter = () => {
@@ -32,15 +26,12 @@ const MainRouter = () => {
             </>
           }
         />
-        <Route
-          path="/hosts/available/:hostId/details"
-          element={<HostDetails />}
-        />
+        <Route path="/hosts/available/:hostId/details" element={<HostDetails />} />
         <Route path="/activities" element={<ActivitiesList />} />
         <Route path="/groups" element={<GroupList />} />
         <Route path="/add-host" element={<HostForm />} />
         <Route path="/hosts/:id/reviews" element={<Review />} />
-         <Route path="/profile" element={<Profile />} /> 
+        <Route path="/profile" element={<Profile />} />
         <Route path="/*" element={<Navigate to="/" replace />} />
       </Routes>
       <Footer></Footer>

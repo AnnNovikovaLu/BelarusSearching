@@ -2,7 +2,7 @@ import axios from "axios";
 import storageAPI from "./storageAPI";
 
 class ServerAPI {
-  baseUrl = "http://localhost:5000/api";
+  baseUrl = `${import.meta.env.VITE_API_URL}/api`;
 
   api = axios.create({
     baseURL: this.baseUrl,
@@ -60,9 +60,7 @@ class ServerAPI {
           ...(userDto.surname !== "" ? { surname: userDto.surname } : {}),
           ...(userDto.email !== "" ? { email: userDto.email } : {}),
           ...(userDto.password !== "" ? { password: userDto.password } : {}),
-          ...(userDto.oldPassword !== ""
-            ? { oldPassword: userDto.oldPassword }
-            : {}),
+          ...(userDto.oldPassword !== "" ? { oldPassword: userDto.oldPassword } : {}),
         },
         {
           headers: {
@@ -131,25 +129,16 @@ class ServerAPI {
     }
   }
 
-  async updateVerification(
-    id,
-    verificationDto,
-    successCallback,
-    errorCallback
-  ) {
+  async updateVerification(id, verificationDto, successCallback, errorCallback) {
     try {
       const token = this.getToken();
 
-      const response = await this.api.patch(
-        `verification/${id}`,
-        verificationDto,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
+      const response = await this.api.patch(`verification/${id}`, verificationDto, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "multipart/form-data",
+        },
+      });
 
       successCallback?.(response.data);
     } catch (error) {

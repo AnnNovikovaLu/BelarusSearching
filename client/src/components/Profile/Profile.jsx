@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import "./Profile.css";
-import imageAPI from '../../services/imageApi';
+import imageAPI from "../../services/imageAPI";
 
 const Profile = () => {
   const userInfo = useSelector((state) => state.userReducer.userInfo);
@@ -38,13 +38,9 @@ const Profile = () => {
           <strong>Interests:</strong> {userInfo.verification.interests}
         </p>
         <p>
-        <strong>Profile Image:</strong>
+          <strong>Profile Image:</strong>
           <img
-            src={
-              userInfo.verification.image
-                ? imageAPI.getImage(userInfo.verification.image) 
-                : "/default-profile.jpg"
-            }
+            src={userInfo.verification.image ? imageAPI.getImage(userInfo.verification.image) : "/default-profile.jpg"}
             alt="Profile"
             style={{ width: "100px", height: "100px" }}
           />

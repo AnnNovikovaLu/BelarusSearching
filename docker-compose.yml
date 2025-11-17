@@ -1,0 +1,54 @@
+services:
+  db:
+    image: postgres:16
+    container_name: BelarusSearching-db
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1111
+      POSTGRES_DB: belarus-searching-db
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 3s
+      timeout: 10s
+      retries: 5
+      start_period: 15s
+
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: BelarusSearching-server
+    restart: always
+    ports:
+      - "5000:5000"
+    env_file:
+      - ./server/.env.docker
+    depends_on:
+      - db
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/api/health"]
+      interval: 3s
+      timeout: 10s
+      retries: 5
+      start_period: 15s
+
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    container_name: BelarusSearching-client
+    restart: always
+    ports:
+      - "3000:80"
+    env_file:
+      - ./client/.env.docker
+    depends_on:
+      - server
+
+volumes:
+  db_data:

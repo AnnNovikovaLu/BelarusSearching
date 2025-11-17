@@ -26,9 +26,7 @@ const HostDetails = () => {
   useEffect(() => {
     const fetchHostDetails = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:5000/api/hosts/${hostId}`
-        );
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/hosts/${hostId}`);
         setHost(response.data);
       } catch (error) {
         console.error("Error fetching host details:", error);
@@ -85,16 +83,11 @@ const HostDetails = () => {
                       {user.email}
                     </a>
                   </p>
-                  <button
-                    className="show-phone-button"
-                    onClick={() => setShowPhone(!showPhone)}
-                  >
+                  <button className="show-phone-button" onClick={() => setShowPhone(!showPhone)}>
                     {showPhone ? "Скрыть номер" : "Показать номер"}
                   </button>
                   {showPhone && <p>Телефон: {verification.phoneNumber}</p>}
-                  <p className="description-heading">
-                    {verification.description}
-                  </p>
+                  <p className="description-heading">{verification.description}</p>
                   <h5 className="interests-heading">Интересы:</h5>
                   <p>{verification.interests.split(",").join(", ")}</p>
                 </>
@@ -122,7 +115,7 @@ export default HostDetails;
     const fetchHostDetails = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/hosts/${hostId}`
+          `${import.meta.env.VITE_API_URL}/api/hosts/${hostId}`
         );
         setHost(response.data);
       } catch (error) {
@@ -196,7 +189,7 @@ export default HostDetails; */
     const fetchHostDetails = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/hosts/${hostId}`
+          `${import.meta.env.VITE_API_URL}/api/hosts/${hostId}`
         );
         setHost(response.data);
       } catch (error) {
@@ -264,7 +257,7 @@ export default HostDetails; */
     const fetchHostDetails = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/hosts/${hostId}`
+          `${import.meta.env.VITE_API_URL}/api/hosts/${hostId}`
         );
         setHost(response.data);
       } catch (error) {
@@ -332,7 +325,7 @@ const HostDetails = () => {
     const fetchHostDetails = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/hosts/${hostId}`
+          `${import.meta.env.VITE_API_URL}/api/hosts/${hostId}`
         );
         setHost(response.data);
       } catch (error) {
