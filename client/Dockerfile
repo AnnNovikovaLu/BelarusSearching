@@ -1,4 +1,4 @@
-FROM node:20
+FROM node:20-alpine AS builder
 
 WORKDIR /app
 
@@ -12,7 +12,7 @@ COPY .env.docker .env
 
 RUN npm run build
 
-# 2 стадия
+# стадия 2
 FROM nginx:1.27-alpine AS production
 
 COPY --from=builder /app/dist /usr/share/nginx/html
